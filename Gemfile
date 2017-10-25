@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'grape'
 gem 'hashie-forbidden_attributes'
 
+gem 'acts_as_tree'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -45,6 +47,7 @@ group :development, :test do
 
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 3.1'
 
   gem 'rubocop'
 end
