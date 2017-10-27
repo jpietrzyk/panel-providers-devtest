@@ -1,12 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 # we dont need all this stuff
-# require 'rails/all'
+require 'rails/all'
 
-require 'active_record/railtie'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'sprockets/railtie'
+# require 'active_record/railtie'
+# require 'action_controller/railtie'
+# require 'action_mailer/railtie'
+# require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,10 +26,8 @@ module Pbc
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
-    
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.autoload_paths << Rails.root.join('app/endpoints/**/')
   end
 end
