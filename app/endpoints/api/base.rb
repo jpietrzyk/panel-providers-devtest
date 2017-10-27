@@ -4,10 +4,15 @@ module API
   class Base < Grape::API
     use GrapeLogging::Middleware::RequestLogger, instrumentation_key: 'grape_key',
                                                  include: [GrapeLogging::Loggers::FilterParameters.new]
-    mount API::V1::RootV1
+
+    # private API endpoints
+    mount API::Private::V1::RootV1
+
+    # public API endpoints
+    mount API::Public::V1::RootV1
 
     def self.respond_to_error(e)
-      logger.error e unless Rails.env.test? # Breaks tests...
+      logger.error e unless Rails.env.test?
       eclass = e.class.to_s
       message = "OAuth error: #{e}" if eclass =~ /WineBouncer::Errors/
       opts = { error: message || e.message }
