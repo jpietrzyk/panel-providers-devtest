@@ -7,7 +7,7 @@ module API
           desc 'Private locations for a country.'
           oauth2 'private_access'
           get '/:country_code' do
-            { ping: 'pong' }
+            {  }
           end
         end
       end
