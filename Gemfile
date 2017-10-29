@@ -34,6 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'grape'
+gem 'grape-entity'
 gem 'grape_logging'
 gem 'hashie-forbidden_attributes'
 # Authentication and protection

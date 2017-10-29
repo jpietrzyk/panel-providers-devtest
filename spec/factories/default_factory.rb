@@ -7,6 +7,12 @@ FactoryGirl.define do
     "foo#{n}@bar.com"
   end
 
+  sequence :unique_code do |n|
+    "secret-#{n}"
+  end
+
+  sequence(:country_code) { ('A'..'Z').to_a.sample(2).join }
+
   factory :user do
     email { generate(:unique_email) }
   end
@@ -20,5 +26,31 @@ FactoryGirl.define do
     application_id { FactoryGirl.create(:doorkeeper_application).id }
     resource_owner_id { FactoryGirl.create(:user).id }
     scopes :private_access
+  end
+
+  factory :panel_provider do
+    code { generate(:unique_code) }
+  end
+
+  factory :country do
+    country_code { generate(:country_code) }
+    panel_provider_id { FactoryGirl.create(:panel_provider).id }
+  end
+
+  factory :location do
+    name { generate(:unique_name) }
+    secret_code { generate(:unique_code) }
+  end
+
+  factory :location_group do
+    name { generate(:unique_name) }
+    country_id { FactoryGirl.create(:country).id }
+    panel_provider_id { FactoryGirl.create(:panel_provider).id }
+  end
+
+  factory :target_group do
+    name { generate(:unique_name) }
+    secret_code { generate(:unique_code) }
+    panel_provider_id { FactoryGirl.create(:panel_provider).id }
   end
 end
