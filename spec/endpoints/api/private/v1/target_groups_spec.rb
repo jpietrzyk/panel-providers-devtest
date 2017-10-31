@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe API::Private::V1::TargetGroups, type: :request do
   include_context :oauth_app
-  describe 'current' do
+  context 'not authenticated user' do
     it 'sends correct error code when no user present' do
       get '/api/private/v1/target_groups/en'
       expect(response.response_code).to eq(401)
@@ -19,13 +19,20 @@ describe API::Private::V1::TargetGroups, type: :request do
       expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(response.headers['Access-Control-Request-Method']).to eq('*')
     end
+  end
 
-    it 'ping' do
-      get '/api/private/v1/target_groups/en', format: :json, access_token: access_token.token
+  context 'authenticated user' do
+    include_context :target_groups
+    it 'return target locations' do
+      get "/api/private/v1/target_groups/#{country.country_code}",
+          format: :json,
+          access_token: access_token.token
       result = JSON.parse(response.body)
       expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(response.response_code).to eq(200)
-      expect(response.body).to eq({ ping: 'pong' }.to_json)
+      expect(result.first['name']).to eq(target_group.name)
+      expect(result.first['external_id']).to eq(target_group.external_id)
+      expect(result.first['secret_code']).to eq(target_group.secret_code)
     end
   end
 end

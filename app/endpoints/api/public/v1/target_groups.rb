@@ -6,8 +6,15 @@ module API
         resource :target_groups, desc: 'Public target groups for a country' do
           desc 'Public target groups for a country.'
           oauth2
-          get '/:country_code' do
-            { ping: 'pong' }
+          params do
+            requires :country_code, type: String
+          end
+          get ':country_code' do
+            target_groups = GetTargetGroupsService.new(
+              country_code: params[:country_code]
+            ).call
+            present target_groups,
+                    with: API::Entities::TargetGroup
           end
         end
       end

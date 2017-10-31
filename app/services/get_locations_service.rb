@@ -15,9 +15,11 @@ class GetLocationsService
   attr_reader :country_code, :scope
 
   def locations
-    locations = Country.find_by(country_code: country_code)
+    location_groups = Country.find_by(country_code: country_code)
                     .try(:panel_provider)
                     .try(:location_groups)
-    locations || []
+    return [] if location_groups.blank?
+
+    location_groups.map(&:locations).try(:flatten) || []
   end
 end

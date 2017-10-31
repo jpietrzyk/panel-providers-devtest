@@ -6,8 +6,17 @@ module API
         resource :locations, desc: 'Private locations for a country' do
           desc 'Private locations for a country.'
           oauth2 'private_access'
-          get '/:country_code' do
-            {  }
+          params do
+            requires :country_code, type: String
+          end
+          get ':country_code' do
+            locations = GetLocationsService.new(
+              country_code: params[:country_code],
+              scope: :private
+            ).call
+            present locations,
+                    with: API::Entities::Location,
+                    scope: :private_access
           end
         end
       end

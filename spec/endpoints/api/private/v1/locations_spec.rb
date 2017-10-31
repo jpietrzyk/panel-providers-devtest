@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe API::Private::V1::Locations, type: :request do
   include_context :oauth_app
-  describe 'current' do
+  context 'not authenticated user' do
     it 'sends correct error code when no user present' do
       get '/api/private/v1/locations/en'
       expect(response.response_code).to eq(401)
@@ -19,13 +19,21 @@ describe API::Private::V1::Locations, type: :request do
       expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(response.headers['Access-Control-Request-Method']).to eq('*')
     end
+  end
 
+  context 'authenticated user' do
+    include_context :locations
     it 'shows locations based on country code' do
-      get '/api/private/v1/locations/en', format: :json, access_token: access_token.token
-      # result = JSON.parse(response.body)
+      get "/api/private/v1/locations/#{location_group.country.country_code}",
+          format: :json,
+          access_token: access_token.token
+      result = JSON.parse(response.body)
       expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(response.response_code).to eq(200)
-      # expect(response.body).to eq({ ping: 'pong' }.to_json)
+      location = location_group.locations.first
+      expect(result.first['name']).to eq(location.name)
+      expect(result.first['external_id']).to eq(location.external_id)
+      expect(result.first['secret_code']).to eq(location.secret_code)
     end
   end
 end

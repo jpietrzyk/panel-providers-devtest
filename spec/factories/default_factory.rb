@@ -11,7 +11,12 @@ FactoryGirl.define do
     "secret-#{n}"
   end
 
+  sequence :external_id do |n|
+    "#{n}-ext"
+  end
+
   sequence(:country_code) { ('A'..'Z').to_a.sample(2).join }
+
 
   factory :user do
     email { generate(:unique_email) }
@@ -50,6 +55,7 @@ FactoryGirl.define do
 
   factory :target_group do
     name { generate(:unique_name) }
+    external_id { generate(:external_id) }
     secret_code { generate(:unique_code) }
     panel_provider_id { FactoryGirl.create(:panel_provider).id }
   end

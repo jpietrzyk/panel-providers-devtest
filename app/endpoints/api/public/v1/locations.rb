@@ -6,8 +6,14 @@ module API
         resource :locations, desc: 'Public locations for a country' do
           desc 'Public locations for a country.'
           oauth2
-          get '/:country_code' do
-            { ping: 'pong' }
+          params do
+            requires :country_code, type: String
+          end
+          get ':country_code' do
+            locations = GetLocationsService.new(
+              country_code: params[:country_code]
+            ).call
+            present locations, with: API::Entities::Location
           end
         end
       end

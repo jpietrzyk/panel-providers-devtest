@@ -10,21 +10,11 @@ RSpec.describe GetLocationsService do
     end
 
     context 'when country found' do
-      let(:country) { FactoryGirl.create(:country) }
-      let(:location_group) do
-        FactoryGirl.create(
-          :location_group,
-          locations: [FactoryGirl.create(:location)],
-          panel_provider: country.panel_provider,
-          country: country
-        )
-      end
-
+      include_context :locations
       it 'returns locations' do
         result = described_class.new(
           country_code: location_group.country.country_code
-        )
-                                .call
+        ).call
         expect(result).to_not be_empty
       end
     end
