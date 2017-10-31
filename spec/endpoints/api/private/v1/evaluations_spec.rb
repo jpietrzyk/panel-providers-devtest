@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe API::Private::V1::Evaluations, type: :request do
   include_context :oauth_app
-  describe 'current' do
+  context 'not authenticated user' do
     it 'sends correct error code when no user present' do
       post '/api/private/v1/evaluations'
       expect(response.response_code).to eq(401)
@@ -19,13 +19,18 @@ describe API::Private::V1::Evaluations, type: :request do
       expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
       expect(response.headers['Access-Control-Request-Method']).to eq('*')
     end
+  end
 
-    it 'evaluates locations list' do
-      post '/api/private/v1/evaluations', format: :json, access_token: access_token.token
-      result = JSON.parse(response.body)
-      expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
-      expect(response.response_code).to eq(201)
-      expect(response.body).to eq({ ping: 'pong' }.to_json)
+
+  context 'authenticated user' do
+    context 'when not valid parameters' do
+      it 'evaluates locations list' do
+        post '/api/private/v1/evaluations',
+             format: :json,
+             access_token: access_token.token
+        expect(response.headers['Access-Control-Allow-Origin']).to eq('*')
+        expect(response.response_code).to eq(400)
+      end
     end
   end
 end

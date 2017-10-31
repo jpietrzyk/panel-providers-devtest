@@ -45,6 +45,9 @@ gem 'wine_bouncer'
 
 gem 'acts_as_tree'
 
+# web scrapping
+gem 'mechanize'
+
 group :development, :test do
   gem 'pry'
   gem 'rubocop'
@@ -57,4 +60,5 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'webmock'
 end

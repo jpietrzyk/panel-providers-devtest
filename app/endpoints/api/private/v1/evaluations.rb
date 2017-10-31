@@ -6,6 +6,11 @@ module API
         resource :evaluations, desc: 'Target evaluation' do
           desc 'Target evaluation'
           oauth2 'private_access'
+          params do
+            requires :country_code, type: String
+            requires :target_group_id, type: Integer
+            requires :locations, type: Array
+          end
           post '/' do
             { ping: 'pong' }
           end
