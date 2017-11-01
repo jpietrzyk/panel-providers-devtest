@@ -4,7 +4,7 @@ class WebPageCharCounterService
   attr_accessor :char
   attr_reader :char_count
 
-  def initialize(url:, char: nil)
+  def initialize(url:, char: 'a')
     @url = url
     @char = char
   end
