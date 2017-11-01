@@ -1,7 +1,7 @@
 module API
   module Private
     module V1
-      class Locations < API::Private::V1::RootV1
+      class Locations < API::Private::V1::Root
         include API::Defaults
         resource :locations, desc: 'Private locations for a country' do
           desc 'Private locations for a country.'

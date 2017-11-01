@@ -1,7 +1,7 @@
 module API
   module Private
     module V1
-      class RootV1 < API::Base
+      class Root < API::BasePrivate
         format :json
         version 'v1'
         prefix 'private'
@@ -10,7 +10,7 @@ module API
         use ::WineBouncer::OAuth2
 
         rescue_from :all do |e|
-          API::Base.respond_to_error(e)
+          API::BasePrivate.respond_to_error(e)
         end
 
         mount API::Private::V1::Ping

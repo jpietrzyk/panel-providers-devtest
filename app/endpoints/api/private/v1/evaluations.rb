@@ -1,7 +1,7 @@
 module API
   module Private
     module V1
-      class Evaluations < API::Private::V1::RootV1
+      class Evaluations < API::Private::V1::Root
         include API::Defaults
         resource :evaluations, desc: 'Target evaluation' do
           desc 'Target evaluation'

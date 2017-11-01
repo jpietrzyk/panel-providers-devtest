@@ -36,6 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'grape'
 gem 'grape-entity'
 gem 'grape_logging'
+gem 'grape_on_rails_routes'
 gem 'hashie-forbidden_attributes'
 # Authentication and protection
 gem 'devise'

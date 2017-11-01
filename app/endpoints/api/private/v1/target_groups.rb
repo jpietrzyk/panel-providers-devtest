@@ -1,7 +1,7 @@
 module API
   module Private
     module V1
-      class TargetGroups < API::Private::V1::RootV1
+      class TargetGroups < API::Private::V1::Root
         include API::Defaults
         resource :target_groups, desc: 'Private target groups for a country' do
           desc 'Private target groups for a country.'

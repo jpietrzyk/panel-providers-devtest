@@ -1,7 +1,7 @@
 module API
   module Public
     module V1
-      class Locations < API::Public::V1::RootV1
+      class Locations < API::Public::V1::Root
         include API::Defaults
         resource :locations, desc: 'Public locations for a country' do
           desc 'Public locations for a country.'
