@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   use_doorkeeper
-  mount API::Base => '/api'
+  mount API::BasePrivate => '/api'
+  mount API::BasePublic => '/api'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users,
+             controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end

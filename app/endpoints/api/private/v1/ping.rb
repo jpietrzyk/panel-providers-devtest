@@ -1,7 +1,7 @@
 module API
   module Private
     module V1
-      class Ping < API::Private::V1::RootV1
+      class Ping < API::Private::V1::Root
         include API::Defaults
         resource :ping, desc: 'Just ping pongs' do
           desc 'Returns pong.'
