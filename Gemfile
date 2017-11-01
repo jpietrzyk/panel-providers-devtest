@@ -51,6 +51,7 @@ gem 'mechanize'
 group :development, :test do
   gem 'pry'
   gem 'rubocop'
+  gem 'faker'
 end
 
 group :test do
