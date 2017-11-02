@@ -14,7 +14,10 @@ class DocController < ApplicationController
 
   def authorize
     @access_code = params[:code]
-    @access_grant = Doorkeeper::AccessGrant.where(resource_owner_id: current_user.id, token: @access_code).last
+    @access_grant = Doorkeeper::AccessGrant
+                    .where(resource_owner_id: current_user.id,
+                           token: @access_code)
+                    .last
     @application = @access_grant.application if @access_grant.present?
   end
 end
