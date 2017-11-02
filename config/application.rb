@@ -30,5 +30,13 @@ module Pbc
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths << Rails.root.join('app/endpoints/**/')
     config.autoload_paths << Rails.root.join('app/entities/**/')
+
+    config.middleware.insert_before 0, Rack::Cors do
+      # Permit CORS from any origin, only in the API route
+      allow do
+        origins '*'
+        resource '/api/*', headers: :any
+      end
+    end
   end
 end

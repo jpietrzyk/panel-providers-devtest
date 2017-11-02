@@ -33,33 +33,45 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Tree
+gem 'acts_as_tree'
+
+# View
+gem 'bootstrap-sass'
+gem 'devise-bootstrap-views'
+gem 'slim-rails'
+
+# Grape API framework
 gem 'grape'
 gem 'grape-entity'
 gem 'grape_logging'
 gem 'grape_on_rails_routes'
 gem 'hashie-forbidden_attributes'
+
+# API documentation and presentation
+gem 'grape-swagger'
+gem 'rack-cors', require: 'rack/cors'
+
 # Authentication and protection
 gem 'devise'
 gem 'doorkeeper'
 gem 'omniauth'
 gem 'wine_bouncer'
 
-gem 'acts_as_tree'
-
-# web scrapping
+# Web scrapping
 gem 'mechanize'
 
 group :development, :test do
+  gem 'faker'
   gem 'pry'
   gem 'rubocop'
-  gem 'faker'
 end
 
 group :test do
   gem 'database_cleaner'
-  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'rspec'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'webmock'
