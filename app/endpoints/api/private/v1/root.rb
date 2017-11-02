@@ -26,8 +26,8 @@ module API
           mount_path: '/swagger_doc',
           endpoint_auth_wrapper: WineBouncer::OAuth2,
           info: {
-            title: 'Grape Swagger base app',
-            description: 'API for Devtest - https://github.com/pbc/devtest/blob/master/README.md'
+            title: 'Private Panel Provider API',
+            description: 'Private API for developer test task. Description can be found at: https://github.com/pbc/devtest/blob/master/README.md'
           }
 
         route :any, '*path' do

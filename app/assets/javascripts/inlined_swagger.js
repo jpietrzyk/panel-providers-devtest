@@ -66,17 +66,23 @@ const initializeApplicationList = function() {
 };
 
 $(function() {
-  const url = `${window.base_url}/api/private/${window.api_version}/swagger_doc`;
-  window.swaggerUi = new SwaggerUi({
-    url,
-    dom_id: "swagger-ui-container",
-    supportedSubmitMethods: [
-      "get",
-      "post",
-      "put",
-      "delete"
+  const publicUrl = `${window.base_url}/api/public/${window.api_version}/swagger_doc`;
+  const privateUrl = `${window.base_url}/api/private/${window.api_version}/swagger_doc`;
+  const ui = SwaggerUIBundle({
+    urls: [
+      {url: publicUrl, name: 'public api'},
+      {url: privateUrl, name: 'private api'}
     ],
-    onComplete(swaggerApi, swaggerUi) {
+    dom_id: '#swagger-ui-container',
+    presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout",
+    onComplete(swaggerApi, ui) {
       // Try to load the token from local storage
       const token = localStorage.getItem('access_token');
       if ((token != null) && (token.length > 0)) {
@@ -87,7 +93,6 @@ $(function() {
       $("pre code").each(function(i, e) {
         hljs.highlightBlock(e);
       });
-
     },
 
     onFailure(data) {
@@ -98,7 +103,7 @@ $(function() {
     sorter: "alpha"
   });
 
-  window.swaggerUi.load();
+  window.swaggerUi = ui
 
   initializeAccessTokenForm();
   return initializeApplicationList();

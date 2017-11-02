@@ -51,7 +51,6 @@ gem 'hashie-forbidden_attributes'
 # API documentation and presentation
 gem 'grape-swagger'
 gem 'rack-cors', require: 'rack/cors'
-gem 'swagger-ui_rails', git: 'https://github.com/audionerd/swagger-ui_rails'
 
 # Authentication and protection
 gem 'devise'

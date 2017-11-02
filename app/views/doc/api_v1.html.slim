@@ -9,12 +9,13 @@ html
       window.api_version = "v1"
     = javascript_include_tag "doc"
     body.swagger-section
+
       header#header.content-header
         .container
           form#api_selector.form
             .api-header-group.api-header-url
               label for='baseUrl' Devtest Panel Providers
-              input#input_baseUrl.form-control name='baseUrl' placeholder="#{ENV['BASE_URL']}/api/v1/private" type='text'
+              input#input_baseUrl.form-control name='baseUrl' placeholder="#{ENV['BASE_URL']}/api" type='text'
             .api-header-group.api-header-key
               label for='baseUrl' API key
               input#input_apiKey.form-control name='apiKey' placeholder='api_key' type='text'

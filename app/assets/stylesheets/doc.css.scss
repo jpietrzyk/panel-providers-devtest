@@ -1,5 +1,5 @@
 /*= require_self */
-// = require swagger-ui
+// = require vendor/swagger-ui/swagger-ui
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -11,6 +11,24 @@ $gray-light: #a7a7a7;
 $gray: #bebebe;
 
 $form-font-weight: 400;
+
+html
+{
+  box-sizing: border-box;
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+*,
+*:before,
+*:after
+{
+  box-sizing: inherit;
+}
+
+body {
+  margin:0;
+  background: #fafafa;
+}
 
 #header {
   position: fixed;
