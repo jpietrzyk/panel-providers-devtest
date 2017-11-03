@@ -56,6 +56,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'devise'
 gem 'doorkeeper'
 gem 'omniauth'
+gem 'omniauth-google-oauth2'
 gem 'wine_bouncer'
 
 # Web scrapping

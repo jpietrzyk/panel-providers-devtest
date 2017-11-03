@@ -17,6 +17,8 @@ module API
         mount API::Public::V1::Locations
         mount API::Public::V1::TargetGroups
 
+        mount API::Public::V1::Me
+
         add_swagger_documentation \
           base_path: '/api',
           api_version: 'v1',

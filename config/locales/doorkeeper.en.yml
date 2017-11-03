@@ -15,6 +15,9 @@ en:
               secured_uri: 'must be an HTTPS/SSL URI.'
 
   doorkeeper:
+    scopes:
+      write_user: 'Can write to user'
+      read_user: 'Can read user attributes'
     applications:
       confirmations:
         destroy: 'Are you sure?'

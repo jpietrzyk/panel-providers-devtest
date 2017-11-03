@@ -1,4 +1,4 @@
-OAUTH_SCOPES = [:private_access].freeze
+OAUTH_SCOPES = [:private_access, :write_user].freeze
 OAUTH_SCOPES_S = OAUTH_SCOPES.join(' ')
 
 Doorkeeper.configure do
